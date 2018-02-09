@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css?family=Lobster");
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.title {
+  margin: auto;
+  background-color: #fff;
+  font-family: Lobster, Georgia;
+  font-weight: 700;
+  color: orange;
+  text-shadow: 1px 1px 2px black;
+
+  letter-spacing: 3px;
+  justify-content: center;
+  text-align: center;
+  /* Center the title*/
+}
+
+body {
+  background-color: white;
+  margin-bottom: 100px;
+}
+
+.container {
+  margin: 5vh auto 5vh auto;
+  border-radius: 20px;
+  border: 1px rgba(250, 20, 20, 0.5);
+  width: 80%;
+  background-color: #fff;
+}
+
+.btn {
+  border: 1px solid black;
+  
+  background-color: black;
+  padding: 1px 0 1px 0;
+  text-align: left;
+  width: 170px;
+  padding: 0 10px 0 10px;
+  font-family: "Lobster", Georgia;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 2px 2px 15px rgba(250, 255, 255, 0.4);
+}
+nav {
+  /* Hacky fix because I couldnt get the button centered   */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.footer {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  right: 0;
+  width: 40%;
+  height: 50px;
+  margin: 0 auto;
+}
+
+.footer-button {
+  border: 5px solid black;
+  color: black;
+  text-style: none;
+  border-radius: 120px;
+  background-color: white;
+  padding: 5px 0 5px 0;
+  text-align: center;
+  width: 120px;
+  padding: 0 10px 0 10px;
+  font-family: "Lobster", Georgia;
+}
+
+.btn {
+  justify-content: space-evenly;
+  text-decoration: none;
+  background-color: #fff;
+  font-family: "Lobster";
+  color: black;
+  padding: 5px;
+  text-align: center;
+  border-radius: 8px;
+  margin: 5px 5px 5px 5px;
+}
+.spacer {
+  background-color: lightgrey;
+height: 1px;
+  margin: 15px auto;
+  
+  width: 85%;
+  box-shadow: 0px 0px 15px black;
+}
+.mainbody {
+  margin-top: 0px;
+  display: flex;
+}
+.portrait{
+  width: 50%;
+  float: right;
+  margin: 0 3vh 0 auto;
+  border-radius: 15px;
+}
+.notes-list {
+  background-color: #fff;
+  margin-left: 0;   
+  padding-left: 2vh;
+}
+.sidepanel {
+  background-color: #fff;
+  width: 45ch;
+  font-family: arial;
+}
+
+ul {
+  list-style: none;
+}
+
+.side-line {
+  width: 1px;
+  background-color: grey;
+  
+  box-shadow: 1px 1px 15px black;
+}
+
+.headboard {
+    
+}
+
+.notes {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin:0 5px;
+}
+
+
+
+.todo {
+    box-shadow: 5px 5px 5px 25px lightgrey;
+    border-radius: 25px;
+    padding: 25px;
+}    
