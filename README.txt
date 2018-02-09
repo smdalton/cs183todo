@@ -1,3 +1,1 @@
-A Pen created at CodePen.io. You can find this one at https://codepen.io/smdalton/pen/OQWQex.
-
- 
+A simple todo app to learn fundamentals of html/css/js
