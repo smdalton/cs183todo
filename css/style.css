@@ -102,10 +102,11 @@ height: 1px;
   display: flex;
 }
 .portrait{
-  width: 50%;
-  float: right;
+  width: 15vh;
+  height:15vh;
   margin: 0 3vh 0 auto;
   border-radius: 15px;
+  float: right;
 }
 .notes-list {
   background-color: #fff;
@@ -114,8 +115,8 @@ height: 1px;
 }
 .sidepanel {
   background-color: #fff;
-  width: 45ch;
-  font-family: arial;
+  width: 40%;
+  font-family: 'Helvetica';
 }
 
 ul {
@@ -134,8 +135,10 @@ ul {
 }
 
 .notes {
-    border-top: 1px solid black;
+    
     border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-radius: 5px 0px 5px 0px;
     margin:0 5px;
 }
 
@@ -146,3 +149,15 @@ ul {
     border-radius: 25px;
     padding: 25px;
 }    
+
+.menu {
+    display:flex;
+}
+
+.content-section {
+
+}
+
+.schedule {
+    width: 35%;
+}
