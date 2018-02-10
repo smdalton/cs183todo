@@ -104,9 +104,9 @@ height: 1px;
 .portrait{
   width: 15vh;
   height:15vh;
-  margin: 0 3vh 0 auto;
   border-radius: 15px;
   float: right;
+  
 }
 .notes-list {
   background-color: #fff;
@@ -155,9 +155,14 @@ ul {
 }
 
 .content-section {
-
+    display: flex;
 }
 
 .schedule {
     width: 35%;
+   
+}
+
+.schedul-item {
+    float: left;
 }
