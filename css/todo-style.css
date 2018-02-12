@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster");
+
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -18,27 +21,22 @@
   /* Center the title*/
 }
 
-.switch-1:checked ~ .hidden-1
-{
-   display: none;
-}
-
-.switch-2:checked ~ .hidden-2
-{
-   display: none;
-}
-
-.switch-3:checked ~ .hidden-3
-{
-   display: none;
-}
-
 body {
   background-color: white;
   margin-bottom: 100px;
  
 }
+h2{
+    font-family: 'lobster';
+}
 
+h3{
+    font-family: 'bungee';
+}
+li{
+    border: solid;
+    padding: 5px;
+}
 .container {
   margin: 5vh auto 5vh auto;
   border-radius: 20px;
@@ -127,11 +125,16 @@ height: 1px;
   background-color: #fff;
   margin-left: 0;   
   padding-left: 2vh;
-}
-.sidepanel {
+}.sidepanel {
   background-color: #fff;
   width: 40%;
   font-family: 'Helvetica';
+    padding: 15px;
+    Border: 4px solid black;
+    border-radius: 25px;
+}    
+p{
+    font-family: courier;
 }
 
 ul {
@@ -151,10 +154,9 @@ ul {
 
 .notes {
     
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-    border-radius: 5px 0px 5px 0px;
+    
     margin:0 5px;
+    font-family: bungee
 }
 
 
@@ -197,3 +199,5 @@ ul {
 .sched-list {
     padding-left: 0;
 }
+
+

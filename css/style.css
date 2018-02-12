@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster");
+
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -21,8 +24,19 @@
 body {
   background-color: white;
   margin-bottom: 100px;
+ 
+}
+h2{
+    font-family: 'lobster';
 }
 
+h3{
+    font-family: 'bungee';
+}
+li{
+    
+    padding: 5px;
+}
 .container {
   margin: 5vh auto 5vh auto;
   border-radius: 20px;
@@ -45,6 +59,7 @@ body {
 .btn:hover {
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 2px 2px 15px rgba(250, 255, 255, 0.4);
+    cursor: pointer;
 }
 nav {
   /* Hacky fix because I couldnt get the button centered   */
@@ -100,11 +115,12 @@ height: 1px;
 .mainbody {
   margin-top: 0px;
   display: flex;
+    justify-content: space-around;
 }
 .portrait{
  
-  width: 45%;
-  height:35%;
+  width: 30vh;
+  height:30vh;
   border-radius: 15px;
 }
 .notes-list {
@@ -116,6 +132,12 @@ height: 1px;
   background-color: #fff;
   width: 40%;
   font-family: 'Helvetica';
+    padding: 15px;
+    Border: 4px solid black;
+    border-radius: 25px;
+}    
+p{
+    font-family: courier;
 }
 
 ul {
@@ -135,10 +157,9 @@ ul {
 
 .notes {
     
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-    border-radius: 5px 0px 5px 0px;
-    margin:0 5px;
+    
+    margin:5px;
+    font-family: bungee;
 }
 
 
@@ -168,16 +189,19 @@ ul {
 
 .schedul-item {
     border-bottom-color: aqua;
-    border: 1px solid black;
+    
     border-radius: 5px;
     padding:5px;
-    margin: 0
+    margin: 5px;;
+    font-family: courier;
 }
 
 .sched-title {
-    margin-top: 0px;
+    margin-top: 200px;
+    margin-right: 20px;
 }
 
 .sched-list {
     padding-left: 0;
+    margin-right: 20px;
 }
