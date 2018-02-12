@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <title>A Pen by  Shane Dalton</title>
-  <link rel="stylesheet" href="../css/todo-style.css">
-  <script src="../scripts/scripts.js"></script>
+  <link rel="stylesheet" href="../css/todo-style.css"><script type ="text/javascript" src="../scripts/scripts.js"></script>
 </head>
 
 <body>
 <div class="container">
+
  <div class="headboard">
     <h1 class="title">To-Do List</h1>
     <nav class="menu">
@@ -19,7 +19,12 @@
     </nav>
   </div>
   <div class="spacer"> </div>
-  <div style="height: 400px;" class="todo-content">
+  <div>
+     <button onClick="showAll()">Show All</button>
+     <button onClick="showDone()">Show Done</button>
+     <button onClick="showToDo()">Show To do items </button>
+      <ul id="todoList">   
+      </ul>
       
   </div>
   

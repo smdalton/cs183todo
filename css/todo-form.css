@@ -181,3 +181,36 @@ ul {
 .sched-list {
     padding-left: 0;
 }
+
+.form {
+    display:flex;
+    justify-content: center;
+}
+
+.form-field {
+    border-radius: 5px;
+}
+
+.form-content {
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.form-item {
+    height:25px;
+   
+}
+
+.form-text {
+    height: 25px;
+    
+}

@@ -18,9 +18,25 @@
   /* Center the title*/
 }
 
+.switch-1:checked ~ .hidden-1
+{
+   display: none;
+}
+
+.switch-2:checked ~ .hidden-2
+{
+   display: none;
+}
+
+.switch-3:checked ~ .hidden-3
+{
+   display: none;
+}
+
 body {
   background-color: white;
   margin-bottom: 100px;
+ 
 }
 
 .container {
