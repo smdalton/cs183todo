@@ -44,7 +44,6 @@ li{
   margin: 5vh auto 5vh auto;
   border-radius: 20px;
   border: 1px rgba(250, 20, 20, 0.5);
-
   background-color: #fff;
 }
 
@@ -65,7 +64,8 @@ li{
 }
 nav {
   /* Hacky fix because I couldnt get the button centered   */
-  display: flex;
+  display: grid;
+	grid-template-rows: 33% 33% 33%;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
@@ -223,4 +223,21 @@ li p {
 
 #todoList {
 	margin: 0 auto;
+}
+
+.sortby {
+	margin: 0 auto;
+	width: 130px;
+	font-family:'Bungee';
+}
+
+.btnS {
+	border: 1px solid black;
+  padding: 1px 0 1px 0;
+  text-align: left;
+  width: 0px 5px 5px 5px;;
+  padding: 0 10px 0 10px;
+  font-family: "Bungee", Georgia;
+	font-size: 13px;
+	border-radius: 5px;
 }

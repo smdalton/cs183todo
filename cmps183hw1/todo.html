@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../css/todo-style.css"><script type ="text/javascript" src="../scripts/scripts.js"></script>
 </head>
 
-<body onload=>
+<body onload="">
 <div class="container">
 
  <div class="headboard">
@@ -18,6 +18,7 @@
       <a href="../cmps183hw1/todo.html" class="btn">Todo List</a>
       <a href="../cmps183hw1/todoForm.html" class="btn">Todo form</a>
     </nav>
+    
   </div>
   <div class="spacer"> </div>
   
@@ -62,18 +63,17 @@
         <a id="showDone" class="btn">Show done</a>
         <a id="showNotDone" class="btn">Show Todo</a>
       </nav>
+      <h4 class="sortby">sort by date:</h4>
+      <nav id="todoSorts">
+      	<a id="sortByPosted"  class="btnS"> Posted</a>
+        <a id="sortByUpdated" class="btnS">Updated</a>
+        <a id="sortByDue" class="btnS">Due</a>
+         <span id="ascend/descend">Toggle Ascending/Descending<input type="checkbox"></span>
+         
+      </nav>
+      
       <ul id="todoList">
-      	<li>
-      		<p class="todoTitle">Title</p>
-      		<p>Description: 
-      		</p>
-      		<p>Created:</p>
-      		<p>Updated:</p>
-      		<p>
-      			Completed:
-			</p>
-           </li>
-            
+      
       </ul>
     </div>
 
