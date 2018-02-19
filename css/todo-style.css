@@ -33,15 +33,18 @@ h2{
 h3{
     font-family: 'bungee';
 }
+
+
 li{
-    border: solid;
-    padding: 5px;
+    
+    padding: 1px;
+	font-family: 'Lobster';
 }
 .container {
   margin: 5vh auto 5vh auto;
   border-radius: 20px;
   border: 1px rgba(250, 20, 20, 0.5);
-  width: 80%;
+
   background-color: #fff;
 }
 
@@ -82,7 +85,6 @@ nav {
 .footer-button {
   border: 5px solid black;
   color: black;
-  text-style: none;
   border-radius: 120px;
   background-color: white;
   padding: 5px 0 5px 0;
@@ -113,7 +115,8 @@ height: 1px;
 }
 .mainbody {
   margin-top: 0px;
-  display: flex;
+  display: grid;
+grid-template-columns: 30% 70%;
 }
 .portrait{
  
@@ -124,14 +127,15 @@ height: 1px;
 .notes-list {
   background-color: #fff;
   margin-left: 0;   
-  padding-left: 2vh;
-}.sidepanel {
+  padding-left: 0;
+}
+
+.sidepanel {
   background-color: #fff;
-  width: 40%;
-  font-family: 'Helvetica';
-    padding: 15px;
-    Border: 4px solid black;
-    border-radius: 25px;
+  margin: 15px;
+  padding: 15px;
+  Border: 2px solid black;
+  border-radius: 25px;
 }    
 p{
     font-family: courier;
@@ -139,6 +143,10 @@ p{
 
 ul {
   list-style: none;
+ 	margin 0;
+	padding:0;
+	display: grid;
+	width: 100%;
 }
 
 .side-line {
@@ -167,10 +175,21 @@ ul {
     padding: 25px;
 }    
 
+.todoTitle{
+	font-family: "Bungee";
+	font-weight: 500;
+	font-size: 20px;
+}
+li p {
+	font-family:'Courier';
+	font-size: 14px;
+}
+
 .menu {
     display:flex;
     justify-content: center;
 }
+
 
 .content-section {
 /* fixed it by setting width, it wasn't automaticall expanding like I thought it did to fill the entire container */
@@ -201,3 +220,7 @@ ul {
 }
 
 
+
+#todoList {
+	margin: 0 auto;
+}

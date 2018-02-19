@@ -1,176 +1,107 @@
-var button = document.getElementById("changeBackground");
-var todoList = document.getElementById("myList");
-var sentinel = true;
 
-var ids = {
-    'todo1':{
-        name:'todo1',
-        done: false,
-        title: 'Get a job',
-        desc: 'gain employment to avoid living under bridge',
-        deadline: 'Before Death'
-    },
-    'todo2':{
-        name:'todo2',
-        done: false,
-        title: 'Go grocery Shopping',
-        desc: 'Spend money to feed body',
-        deadline: 'Before Starvation'
-    },
-    'todo3':{
-        name:'todo3',
-        done: false,
-        title: 'Feed the cats',
-        desc:'there are 5',
-        deadline: 'tonight'
-    },
-    'todo4':{
-        name:'todo4',
-        done:false,
-        title: 'Do laundry',
-        desc: ' put clothes in magical spinning bucket to cleanse all filth',
-        deadline:'yesterday'
-    }
+//Populate with consistent state data
+var todos = {
+	
 };
 
-function test () {
-    show();
-    //showDown();
-    //showNotDone();
-};
-
-//For each of these methods we will nuke the old DOM value for list
-//and re-render a filtered version
-
-function showAll() {
-    var todoList = document.getElementById("todoList");
-    todoList.innerHTML='';
-    if(sentinel){
-        todoList.addEventListener('change', function(e){
-        let id = e.target['id'];
-        console.log('now changing', id);
-        console.log(ids[id]['done']);
-        ids[id]['done']= !ids[id]['done'];
-        console.log(ids[id]['done']);
-        sentinel = false;
+$(function() { //shorthand document.ready function
+    
+	//Todo form submit handler for adding a new todo
+	$('#todoForm').on('submit', function(e) { 
+		e.preventDefault();
+		var oldItems = JSON.parse(localStorage.getItem('todos'));
+		//if the oldItems are null we set initialization
+		if(oldItems === null){
+			console.log('oldItems is null');
+			localStorage.setItem('todos', JSON.stringify([]));
+			oldItems = JSON.parse(localStorage.getItem('todos'));
+		}
+		var data = $("#todoForm :input")
+		var newItems = {
+			'name':data[0].value,
+			'deadline':data[1].value,
+			'description':data[2].value,
+			'created': Date.now(),
+			'updated': Date.now(),
+			'checked': 'true',
+		};
+		oldItems.push(newItems);
+		localStorage.setItem('todos', JSON.stringify(oldItems));
+		return false;
     });
-    }
-    
-    var num =0;
-    for(var item in ids){
-        num +=1;
-        var listItem = document.createElement('LI');
-        //create the text blobs
-        const nameText = document.createTextNode(ids[item]['name']);
-        const titleText= document.createTextNode(ids[item]['title']);
-        const descText = document.createTextNode(ids[item]['desc']);
-        const deadText = document.createTextNode(ids[item]['deadline']);
-        const doneText = document.createTextNode('completed');
-        //create the new elements to attach to the todlist anchor
-        const title= document.createElement('h3');
-        const desc = document.createElement('p');
-        const dead = document.createElement('p');
-        const checkDiv= document.createElement('div');
-        //checkbox, needs a listener
-        var box = document.createElement('input');
-        box.type ='checkbox';
-        box.id = ids[item]['name'];
+	
+	renderTodos=()=>{
+		var todos = JSON.parse(localStorage.getItem('todos'));
+		$('#todoList').empty();
+		var todo = '';
+		for(var item in todos){
+			todo = todos[item];
+			console.log(item);
+			var checked = todos[item].checked ? 'checked': '';
+			console.log(checked);
 
-        
-        box.name=ids[item]['name'];
-        
-        checkDiv.append(doneText, box);
-        
-        //add the textNode to each Parent node
-        title.append(titleText);
-        desc.append(descText);
-        dead.append(deadText);
-        
-        
-        listItem.append(title, desc, dead, checkDiv);
-        todoList.appendChild(listItem);
-        
-    };
-};
+			$('#todoList').prepend(
+			'<li><p class="todoTitle">'+todo.name+'</p>'+
+				'<p>Description:'+todo.description+' </p>'+
+				'<p>Created:'+todo.created+'</p>'+
+				'<p>Updated: '+todo.updated+'</p>'+
+				'<p>Completed:'+todo.checked+'</p>'+
+				'<span>Completed? </span>'+
+				'<input class="checkbox" id="'+ item +' "'+checked+' type="checkbox">'+'<br>'+
+				'<input class="delete" id="'+ item +' "'+checked+' type="checkbox">'+
+			'</li>'
+			)	
+		}
+	}
+	
+	$('#todoList').on('change', '.checkbox', function(e) {
+		console.log(e.target['id']);
+		e.target['id'];
+		// get the index of the item to change/modify
+        }); 
+	
+	//reset local storage function for testing
+	//I need event listeners for each of the three buttons,
+	// showall showdone shownotdone
+	$('#showAll').click(()=>{
+		//render all of the elements of local storage here
+	 renderTodos();
+	});
+	
+	$('#clear').click(()=>{
+		console.log('Triggering reset');
+		resetList = [];
+		localStorage.setItem('todos',JSON.stringify([]));
+	});
+	
+	
+//	
+//	$('#todoList').addEventListener('change', (e)=>{
+//		let id = e.target['id'];
+//		$.
+//		console.log('now changing', id);
+//		
+//	})
+//	
+	
+	
+	
+});
 
 
-showDone  = () => {
-    var todoList = document.getElementById("todoList");
+
+
+init=()=>{
+ var todoList = document.getElementById("todoList");
     todoList.innerHTML='';
-    var num =0;
-    
-    for(var item in ids){
-        if(ids[item]['done'] == false){
-            continue;
-        }
-        var listItem = document.createElement('LI');
-        //create the text blobs
-        const nameText = document.createTextNode(ids[item]['name']);
-        const titleText= document.createTextNode(ids[item]['title']);
-        const descText = document.createTextNode(ids[item]['desc']);
-        const deadText = document.createTextNode(ids[item]['deadline']);
-        const doneText = document.createTextNode('completed');
-        //create the new elements to attach to the todlist anchor
-        const title= document.createElement('h3');
-        const desc = document.createElement('p');
-        const dead = document.createElement('p');
-        const checkDiv= document.createElement('div');
-        //checkbox, needs a listener
-        var box = document.createElement('input');
-        box.type ='checkbox';
-        box.id = ids[item]['name'];
-        box.name=ids[item]['name'];
-        
-        checkDiv.append(doneText, box);
-        
-        //add the textNode to each Parent node
-        title.append(titleText);
-        desc.append(descText);
-        dead.append(deadText);
-        
-        
-        listItem.append(title, desc, dead, checkDiv);
-        todoList.appendChild(listItem);
-        
-    };
+        if(sentinel){
+            todoList.addEventListener('change', function(e){
+            let id = e.target['id'];
+            console.log('now changing', id);
+            console.log(ids[id]['done']);
+            ids[id]['done']= !ids[id]['done'];
+            console.log(ids[id]['done']);
+            sentinel = false;
+        });
+    }
 };
-
-showNotDone = () => {
-        var todoList = document.getElementById("todoList");
-        todoList.innerHTML='';
-        var num =0;
-        for(var item in ids){
-        if(!ids[item]['done'] == false){
-            continue;
-        }
-        var listItem = document.createElement('LI');
-        //create the text blobs
-        const nameText = document.createTextNode(ids[item]['name']);
-        const titleText= document.createTextNode(ids[item]['title']);
-        const descText = document.createTextNode(ids[item]['desc']);
-        const deadText = document.createTextNode(ids[item]['deadline']);
-        const doneText = document.createTextNode('completed');
-        //create the new elements to attach to the todlist anchor
-        const title= document.createElement('h3');
-        const desc = document.createElement('p');
-        const dead = document.createElement('p');
-        const checkDiv= document.createElement('div');
-        //checkbox, needs a listener
-        var box = document.createElement('input');
-        box.type ='checkbox';
-        box.id = ids[item]['name'];
-        box.name=ids[item]['name'];
-        
-        checkDiv.append(doneText, box);
-        
-        //add the textNode to each Parent node
-        title.append(titleText);
-        desc.append(descText);
-        dead.append(deadText);
-        
-        
-        listItem.append(title, desc, dead, checkDiv);
-        todoList.appendChild(listItem);
-        
-    };
-}

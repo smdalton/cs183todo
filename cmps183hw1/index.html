@@ -5,7 +5,9 @@
   <meta charset="UTF-8">
   <title>CMPS183-HW1</title>
       <link rel="stylesheet" href="../css/style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
       <script type ="text/javascript" src="../scripts/scripts.js"></script>
+      
 </head>
 <body>
  
@@ -23,7 +25,8 @@
   <div class="spacer"> </div>
   <div class="mainbody">
     <div class="sidepanel">
-      <h2 class="margin-top: 0px;">Notes</h2>
+      <h2 style="margin-left: 15px;">Notes</h2>
+      <div class="spacer"></div>
       <ul class="notes-list">
         <li class="notes">
           <p>using divs as sperators is very handy!</p>
@@ -44,10 +47,11 @@
 
       </ul>
     </div>
-    <div class="spacer" style="width: 5px"></div>
+    
     <div class="content-section">
      <div class="schedule">
        <h2 class="sched-title">Class Schedule</h2>
+       <div class="spacer"></div>
         <ul class="sched-list">
          <li class="schedul-item">CMPS183 Web Applications<br>MWF 8-9AM</li>
          <li class="schedul-item">LIT80Y Harry Potter<br>
@@ -56,14 +60,15 @@
          <li class="schedul-item">Nothing</li>
          </ul>
      </div>
-     
       <img class="portrait" src="../images/cat.jpg" alt="spacecat">
-    
+    <div id="testArea" style="background-color: aqua">Put a Bio in here</div>
+    <div style="background-color: forestgreen">Maybe put some more shit over here</div>
     </div>
+    
   </div>
 <div class="spacer"> </div>
 <div class="menu"><a href="" class="btn">About Us</a>
-  <a href="" class="btn">Contact</a>
+  <a class="btn" onClick="testClick()">Contact</a>
   <a href="" class="btn">Privacy</a>
   <a href="" class="btn">Credits</a></div>
 </div>

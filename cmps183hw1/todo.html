@@ -4,10 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <title>CMPS183-HW1</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <link rel="stylesheet" href="../css/todo-style.css"><script type ="text/javascript" src="../scripts/scripts.js"></script>
 </head>
 
-<body onload="showAll()">
+<body onload=>
 <div class="container">
 
  <div class="headboard">
@@ -55,13 +56,24 @@
       </ul>
     </div>
     
-   <div class="content">
+   <div class="sidepanel">
        <nav>
-        <a onClick="showAll()" class="btn">Show All</a>
-        <a onClick="showDone()" class="btn">Show done</a>
-        <a onClick="showNotDone()" class="btn">Show Todo</a>
+        <a id="showAll"  class="btn">Show All</a>
+        <a id="showDone" class="btn">Show done</a>
+        <a id="showNotDone" class="btn">Show Todo</a>
       </nav>
-      <ul id="todoList">   
+      <ul id="todoList">
+      	<li>
+      		<p class="todoTitle">Title</p>
+      		<p>Description: 
+      		</p>
+      		<p>Created:</p>
+      		<p>Updated:</p>
+      		<p>
+      			Completed:
+			</p>
+           </li>
+            
       </ul>
     </div>
 
