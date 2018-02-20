@@ -26,9 +26,8 @@ var app = $(function() { //shorthand document.ready function
 		var selector = '#'+index;
 		var editable = $('#todoList')
 			.find('div')	
-			.eq('');
+			.eq(index);
 		console.log(editable);
-		//append the junk html
 		editable.append(formHtml(index));
 		$('#todoForm1').on('submit',function(e){
 			var data = $("#todoForm1 :input");
@@ -50,13 +49,21 @@ var app = $(function() { //shorthand document.ready function
 			
 			currentTodos[index] = newItems;
 			renderTodos(currentTodos);
-			
-			
+			safeReplace(newItems, currentItem);
 			console.log('What the fuck');
 		});
 		// get the index of the item to change/modify
         }); 
-	
+	safeReplace=(newItem, currentItem)=>{
+		var db = getTodos();
+		var i=0;
+		for(i=0; i<db.length;i++){
+			if(db[i].name==currentItem.name){
+				db[i] = newItem;
+			}
+		}
+		localStorage.setItem('todos', JSON.stringify(db));
+	};
 	$('#todoSorts').on('change', function(e){
 		console.log('now flipping the list');
 		renderTodos(currentTodos.reverse());
@@ -128,8 +135,6 @@ var app = $(function() { //shorthand document.ready function
 	$('#todoForm').on('submit', function(e) { 
 		e.preventDefault();
 		var data = $("#todoForm :input");
-		
-		
 		var newItems = {
 			'name':data[0].value,
 			'deadline':data[1].value,
@@ -171,15 +176,11 @@ var app = $(function() { //shorthand document.ready function
 		localStorage.setItem('todos', JSON.stringify(todos));
 		renderTodos(getTodos());
 	}
-		
-	formatDate=(date)=> {            
-		return date.toUTCString();
-    },
 	
 	formHtml =(index)=>{
 		//get the data from the local state to populate the form
 		var tempState = currentTodos[index];
-		console.log(tempState);
+		console.log('made it');
 		var title = tempState.name;
 		var date = Date(tempState.deadline);
 		var desc = tempState.description;
@@ -204,7 +205,6 @@ var app = $(function() { //shorthand document.ready function
 	
 	updateForm=(state)=>{
 		console.log(state);
-	
 	}
 	//renders a list of todos given to it
 	renderTodos=(todos)=>{
@@ -213,6 +213,7 @@ var app = $(function() { //shorthand document.ready function
 		currentTodos = todos;
 		$('#todoList').empty();
 		var todo = '';
+		var tempIndex = 0;
 		for(var item in todos){
 			todo = todos[item];
 			//console.log(item);
@@ -221,14 +222,14 @@ var app = $(function() { //shorthand document.ready function
 			$('#todoList').append(
 			'<li><p class="todoTitle">'+todo.name+'</p>'+
 				'<p>Description:'+todo.description+' </p>'+
-				'<p>Deadline:'+String(Date(todo.deadline))+'</p>'+
-				'<p>Created:'+ String(Date(todo.created))+'</p>'+
-				'<p>Updated: '+String(Date(todo.updated))+'</p>'+
+				'<p>Deadline:'+ (new Date(todo.deadline))+'</p>'+
+				'<p>Created:'+ (new Date(todo.created))+'</p>'+
+				'<p>Updated: '+ (new Date(todo.updated))+'</p>'+
 				'<span>Completed? </span>'+
 				'<input class="checkbox" id="'+ item +' "'+checked+' type="checkbox">'+'<br>'+'<br>'+
 				'<a class="btn edit" id="'+ item +'">edit</a>'+
 				'<a class="delete btn" id="'+ item +'">delete?</a>'+
-				'<div id="editForm"></div>'+
+				'<div id="editForm">'+tempIndex+'</div>'+
 			'</li>'
 			)	
 		}
