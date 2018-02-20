@@ -47,6 +47,31 @@ li{
   background-color: #fff;
 }
 
+.form-content {
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.form-item {
+    height:25px;
+   
+}
+
+.form-text {
+    height: 25px;
+    
+}
+
+
 .btn {
   border: 1px solid black;
   
@@ -62,10 +87,16 @@ li{
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 2px 2px 15px rgba(250, 255, 255, 0.4);
 }
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    
+}
 nav {
   /* Hacky fix because I couldnt get the button centered   */
   display: grid;
-	grid-template-rows: 33% 33% 33%;
+	grid-template-columns: 33% 33% 33%;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
@@ -240,4 +271,9 @@ li p {
   font-family: "Bungee", Georgia;
 	font-size: 13px;
 	border-radius: 5px;
+}
+
+span {
+	font-family:'Lobster';
+	font-size: 14px;
 }

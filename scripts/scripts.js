@@ -6,13 +6,130 @@ var app = $(function() { //shorthand document.ready function
 	var currentTodos = '';
 	$(document).ready(function() {
        renderTodos(getTodos());
+		$('#todoList').on('change', '.checkbox', function(e) {
+		console.log('Change Status on',e.target['id']);
+		let index = e.target['id']/1;
+		var todos = getTodos();
+		todos[index].checked = !todos[index].checked;
+		localStorage.setItem('todos', JSON.stringify(todos));
+        }); 
+	
+	$('#todoList').on('click', '.delete', function(e) {
+		console.log('delete on', e.target['id']);
+		const index = e.target['id'];
+		removeTodoAt(index);	 
+	}); 
+	
+	$('#todoList').on('click', '.edit', function(e) {
+		console.log('edit on', e.target['id']);
+		const index = e.target['id'];
+		var selector = '#'+index;
+		var editable = $('#todoList')
+			.find('div')	
+			.eq('');
+		console.log(editable);
+		//append the junk html
+		editable.append(formHtml(index));
+		$('#todoForm1').on('submit',function(e){
+			var data = $("#todoForm1 :input");
+			console.log(data);
+			e.preventDefault();
+			//get the item for the original data
+			//for created and checked
+			var currentItem = currentTodos[index];
+			
+			
+			var newItems = {
+				'name':data[0].value,
+				'deadline':data[1].value,
+				'description':data[2].value,
+				'created': currentItem.created,
+				'updated': Date.now(),
+				'checked': 'false',
+			};
+			
+			currentTodos[index] = newItems;
+			renderTodos(currentTodos);
+			
+			
+			console.log('What the fuck');
+		});
+		// get the index of the item to change/modify
+        }); 
+	
+	$('#todoSorts').on('change', function(e){
+		console.log('now flipping the list');
+		renderTodos(currentTodos.reverse());
+	});
+	$('#showAll').click(()=>{
+		//render all of the elements of local storage here
+	 renderTodos(getTodos());
+	});
+	$('#sortByPosted').click(()=>{
+		console.log('posted');
+		console.log(sortByPosted(getTodos()));
+	});
+	sortByPosted=(todos)=>{
+		console.log('sort by posted date');
+		//this is the correct todos to render
+		todos.sort(postedCompare);
+		if(ascending === false){
+			todos.reverse();
+		}
+		renderTodos(todos);	
+		currentTodos = todos;
+	};
+	postedCompare=(a,b)=>{
+		console.log('comparing');
+		if(a.created < b.created)
+			return -1;
+		if(a.created > b.created)
+			return 1;
+		return 0;
+	}
+	$('#sortByUpdated').click(()=>{
+		console.log('updated');
+		sortByUpdated(getTodos());
+	});
+	sortByUpdated=(todos)=>{
+		console.log('sorting by updated');
+		todos.sort(updatedCompare);
+		renderTodos(todos);
+		currentTodos = todos;
+	};
+	updatedCompare=(a,b)=>{
+		console.log('comparing');
+		if(a.updated < b.updated)
+			return -1;
+		if(a.updated > b.updated)
+			return 1;
+		return 0;
+	}
+	$('#sortByDue').click(()=>{
+		console.log('due');
+		sortByDue(getTodos());
+	});
+	$('#showDone').click(()=>{
+		console.log('showdone');
+		var finishedTodos = getDone(getTodos());
+		currentTodos = finishedTodos;
+		renderTodos(finishedTodos);
+	});
+	$('#showNotDone').click(()=>{
+		console.log('showNotDone');
+	});  
+	$('#clear').click(()=>{
+		console.log('Triggering reset');
+		resetList = [];
+		localStorage.setItem('todos',JSON.stringify([]));
+	});
     });
-	
-	
 	//Todo form submit handler for adding a new todo
 	$('#todoForm').on('submit', function(e) { 
 		e.preventDefault();
-		var data = $("#todoForm :input")
+		var data = $("#todoForm :input");
+		
+		
 		var newItems = {
 			'name':data[0].value,
 			'deadline':data[1].value,
@@ -52,49 +169,66 @@ var app = $(function() { //shorthand document.ready function
 			todos.splice(index,1); 
 		}
 		localStorage.setItem('todos', JSON.stringify(todos));
-		renderTodos();
+		renderTodos(getTodos());
 	}
 		
 	formatDate=(date)=> {            
-        var d = date.getUTCDate().toString(),           // getUTCDate() returns 1 - 31
-            m = (date.getUTCMonth() + 1).toString(),    // getUTCMonth() returns 0 - 11
-            y = date.getUTCFullYear().toString(),       // getUTCFullYear() returns a 4-digit year
-            formatted = '';
-        if (d.length === 1) {                           // pad to two digits if needed
-            d = '0' + d;
-        }
-        if (m.length === 1) {                           // pad to two digits if needed
-            m = '0' + m;
-        }
-        formatted = m + '/' + d + '/' + y;              // concatenate for output
-        return formatted;
+		return date.toUTCString();
     },
+	
+	formHtml =(index)=>{
+		//get the data from the local state to populate the form
+		var tempState = currentTodos[index];
+		console.log(tempState);
+		var title = tempState.name;
+		var date = Date(tempState.deadline);
+		var desc = tempState.description;
+		return(
+		'<div class="form-container">'+
+     
+		'<form id="todoForm1" class="form-content">'+
+			 '<label for="name">Name of Todo</label>'+
+			 '<input class="form-item" type="text" placeholder="'+title+'">'+
 
+			 '<label for="mail">Deadline:</label>'+
+			 '<input class="form-item"' +
+			   'placeholder="'+date+'" type="datetime-local">'+
+
+			 '<label for="Description">Description:</label>'+
+			 '<input class="form-text" type="text" placeholder="'+desc+'">'+
+
+			'<button class="btn">Submit</button>'+
+      			'</form>'+
+			'</div>')
+	}
 	
+	updateForm=(state)=>{
+		console.log(state);
 	
-	
+	}
 	//renders a list of todos given to it
 	renderTodos=(todos)=>{
 		//var todos = getTodos();
 		//remove the current elements at todolist anchor
 		currentTodos = todos;
 		$('#todoList').empty();
-		
 		var todo = '';
 		for(var item in todos){
 			todo = todos[item];
 			//console.log(item);
 			var checked = todos[item].checked ? 'checked': 'notchecked';
-			console.log(checked);
+			console.log(todo);
 			$('#todoList').append(
 			'<li><p class="todoTitle">'+todo.name+'</p>'+
 				'<p>Description:'+todo.description+' </p>'+
-				'<p>Created:'+formatDate(new Date(todo.created))+'</p>'+
-				'<p>Updated: '+formatDate(new Date(todo.updated))+'</p>'+
+				'<p>Deadline:'+String(Date(todo.deadline))+'</p>'+
+				'<p>Created:'+ String(Date(todo.created))+'</p>'+
+				'<p>Updated: '+String(Date(todo.updated))+'</p>'+
 				'<span>Completed? </span>'+
 				'<input class="checkbox" id="'+ item +' "'+checked+' type="checkbox">'+'<br>'+'<br>'+
 				'<a class="btn edit" id="'+ item +'">edit</a>'+
 				'<a class="delete btn" id="'+ item +'">delete?</a>'+
+				'<div id="editForm"></div>'+
 			'</li>'
 			)	
 		}
@@ -103,85 +237,7 @@ var app = $(function() { //shorthand document.ready function
 	//Register the completion of a todo task by handling the checkbox event
 	
 	
-	$('#todoList').on('change', '.checkbox', function(e) {
-		console.log('Change Status on',e.target['id']);
-		let index = e.target['id']/1;
-		var todos = getTodos();
-		todos[index].checked = !todos[index].checked;
-		localStorage.setItem('todos', JSON.stringify(todos));
-        }); 
 	
-	$('#todoList').on('click', '.delete', function(e) {
-		console.log('delete on', e.target['id']);
-		const index = e.target['id'];
-		removeTodoAt(index);	 
-	}); 
-	
-	$('#todoList').on('click', '.edit', function(e) {
-		console.log('edit on', e.target['id']);
-		const index = e.target['id'];
-		// get the index of the item to change/modify
-        }); 
-	
-	$('#todoSorts').on('change', function(e){
-		console.log('now flipping the list');
-		renderTodos(currentTodos.reverse());
-	});
-	//reset local storage function for testing
-	//I need event listeners for each of the three buttons,
-	// showall showdone shownotdone
-	$('#showAll').click(()=>{
-		//render all of the elements of local storage here
-	 renderTodos(getTodos());
-	});
-	
-	
-	$('#sortByPosted').click(()=>{
-		console.log('posted');
-		console.log(sortByPosted(getTodos()));
-	});
-	sortByPosted=(todos)=>{
-		console.log('sort by posted date');
-		//this is the correct todos to render
-		todos.sort(postedCompare);
-		if(ascending === false){
-			todos.reverse();
-		}
-		renderTodos(todos);	
-		currentTodos = todos;
-	};
-	postedCompare=(a,b)=>{
-		console.log('comparing');
-		if(a.created < b.created)
-			return -1;
-		if(a.created > b.created)
-			return 1;
-		return 0;
-	}
-	
-	$('#sortByUpdated').click(()=>{
-		console.log('updated');
-		sortByUpdated(getTodos());
-	});
-	sortByUpdated=(todos)=>{
-		console.log('sorting by updated');
-		todos.sort(updatedCompare);
-		renderTodos(todos);
-		currentTodos = todos;
-	};
-	updatedCompare=(a,b)=>{
-		console.log('comparing');
-		if(a.updated < b.updated)
-			return -1;
-		if(a.updated > b.updated)
-			return 1;
-		return 0;
-	}
-	
-	$('#sortByDue').click(()=>{
-		console.log('due');
-		sortByDue(getTodos());
-	});
 	sortByDue=(todos)=>{
 		console.log('sorting by due date');
 		todos.sort(dueCompare);
@@ -201,29 +257,13 @@ var app = $(function() { //shorthand document.ready function
 	getDone=(todos)=>{
 		var array = [];
 		todos.forEach((object)=>{
-		if(object.checked){
-			array.push(object);
-		}
-	})
+			if(object.checked){
+				array.push(object);
+			}
+		})
 		return array;
 	}
 	
-	$('#showDone').click(()=>{
-		console.log('showdone');
-		var finishedTodos = getDone(getTodos());
-		currentTodos = finishedTodos;
-		renderTodos(finishedTodos);
-	});
-	
-	$('#showNotDone').click(()=>{
-		console.log('showNotDone');
-	});  
-	  
-	$('#clear').click(()=>{
-		console.log('Triggering reset');
-		resetList = [];
-		localStorage.setItem('todos',JSON.stringify([]));
-	});
 	
 });
 
