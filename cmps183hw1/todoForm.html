@@ -1,55 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>CMPS183-HW1</title>
-      
-      <link rel="stylesheet" href="../css/todo-form.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-      <script type ="text/javascript" src="../scripts/scripts.js"></script>
-      
-
+    <meta charset="UTF-8">
+    <title>CMPS183-HW1</title>
+    <link rel="stylesheet" href="../css/todo-form.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/scripts.js"></script>
 </head>
 <body>
 
 <div class="headboard">
     <h1 class="title">Add a To-Do!</h1>
     <nav class="menu">
-      <a href="../cmps183hw1/index.html" class="btn">Home</a>
-      <a href="../cmps183hw1/todo.html" class="btn">Todo List</a>
-      <a href="../cmps183hw1/todoForm.html" class="btn">Todo form</a>
+        <a href="../cmps183hw1/index.html" class="btn">Home</a>
+        <a href="../cmps183hw1/todo.html" class="btn">Todo List</a>
+        <a href="../cmps183hw1/todoForm.html" class="btn">Todo form</a>
     </nav>
-  </div>
-  <div class="spacer"> </div>
-  <button id="clear">Click Me To clear local Storage</button>
-  <p id="demo"></p>
-  <div class="form-container">
-     
-      <form id="todoForm" class="form-content">
-         <label for="name">Name of Todo</label>
-         <input class="form-item" type="text" placeholder="Title">
-         
-         <label for="mail">Deadline:</label>
-         <input class="form-item" type="datetime-local">
-         
-         <label for="Description">Description:</label>
-         <input class="form-text" type="text" placeholder="Description">
-         
-         <button class="btn">Submit</button>
-      </form>
-      
-      
-  </div>
-  <div class="spacer"> </div>
-<div class="menu"><a href="" class="btn">About Us</a>
-  <a href="" class="btn">Contact</a>
-  <a href="" class="btn">Privacy</a>
-  <a href="" class="btn">Credits</a></div>
-<div>
-    
 </div>
- 
+<div class="spacer"></div>
+<button id="clear">Click Me To clear local Storage</button>
+
+<p id="demo"></p>
+
+
+<div class="form-container">
+<p></p>
+    <form id="todoForm" class="form-content">
+        <label>Name of Todo</label>
+        <input id="title" type="text">
+
+        <label>Deadline:</label>
+        <input type="newTaskDueDate">
+
+        <label>Description:</label>
+        <input type="text" >
+
+        <button class="btn">Add New Task</button>
+    </form>
+
+
+</div>
+<div class="spacer"></div>
+<div class="menu"><a href="" class="btn">About Us</a>
+    <a href="" class="btn">Contact</a>
+    <a href="" class="btn">Privacy</a>
+    <a href="" class="btn">Credits</a></div>
+<div>
+
+</div>
+
 </body>
 
 </html>

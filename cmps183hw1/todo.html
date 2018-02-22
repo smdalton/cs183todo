@@ -5,77 +5,41 @@
   <meta charset="UTF-8">
   <title>CMPS183-HW1</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="../css/todo-style.css"><script type ="text/javascript" src="../scripts/scripts.js"></script>
+  <link rel="stylesheet" href="../css/style.css"><script type ="text/javascript" src="../scripts/scripts.js"></script>
 </head>
 
 <body onload="">
 <div class="container">
 
- <div class="headboard">
+<section class="headboard">
     <h1 class="title">To-Do List</h1>
     <nav class="menu">
-      <a href="../cmps183hw1/index.html" class="btn">Home</a>
-      <a href="../cmps183hw1/todo.html" class="btn">Todo List</a>
-      <a href="../cmps183hw1/todoForm.html" class="btn">Todo form</a>
+      <a href="../cmps183hw1/index.html" class="btn">
+      Home
+      </a>
+      <a href="../cmps183hw1/todo.html" class="btn">
+      Todo List
+      </a>
+      <a href="../cmps183hw1/todoForm.html" class="btn">
+      Todo form
+      </a>
     </nav>
-    
-  </div>
+</section>
   <div class="spacer"> </div>
   
    <div class="mainbody">
-   <div class="sidepanel">
-      <h2 class="margin-top: 0px;">Notes</h2>
-      <ul class="notes-list">
-        <li class="notes">
-          <p>using divs as sperators is very handy!</p>
-        </li>
-        <li class="notes">
-          <p>Flexbox for managing positions is also very helpful</p>
-        </li>
-        <li class="notes">
-          <p>Sometimes a simple clean style looks better than a snazzy one</p>
-        </li>
-        <li class="notes">
-          <p>Another note that will go here</p>
-        </li>
-        <li class="notes">
-          <p>Another note here</p>
-        </li>
-
-        <li class="notes">
-          <p>populate me</p>
-        </li>
-
-        <li class="notes">
-          <p>populate me</p>
-        </li>
-
-        <li class="notes">
-          <p>populate me</p>
-        </li>
-
-      </ul>
-    </div>
-    
-   <div class="sidepanel">
-       <nav>
-        <a id="showAll"  class="btn">Show All</a>
-        <a id="showDone" class="btn">Show done</a>
-        <a id="showNotDone" class="btn">Show Todo</a>
-      </nav>
-      <h4 class="sortby">sort by date:</h4>
-      <nav id="todoSorts">
-      	<a id="sortByPosted"  class="btnS"> Posted</a>
-        <a id="sortByUpdated" class="btnS">Updated</a>
-        <a id="sortByDue" class="btnS">Due</a>
-         <span id="ascend/descend">Toggle Ascending/Descending<input type="checkbox"></span>
-         
-      </nav>
-      
-      <ul id="todoList">
-      
-      </ul>
-    </div>
+  
+   <div class="All">
+       <div id="menu">
+       	<button class="showToDo">Show To Do</button>
+       	<button class="showCompleted">Show Completed</button>
+       	<button class="showAll">Show All</button>
+       	<button class="sortDue">Sort By Due Date</button>
+       	<button class="sortPosted">Sort By Date Created</button>
+       	<button class="sortUpdated">Sort By Updated Date</button>
+       	
+       </div>
+   </div>
 
   </div>
    
